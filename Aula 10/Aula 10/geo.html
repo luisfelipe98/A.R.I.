@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Geolocation</title>
+	
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh5rzxfuBPGlU5w_fGZmZbIgl8nAVtCwc"></script>
+	
+	<script src="LatLon.js"></script>
+	
+	<style type="text/css">
+          html, body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+		
+		#mapa-google {
+			
+			height: 40%;
+			
+		}
+	</style>
+	
+</head>
+
+<body>
+	
+	<div id="mapa-google"></div>
+	
+	<div id="info"></div>
+	<div id="info2"></div>
+	
+	<script>
+		
+		navigator.geolocation.watchPosition(function (position) { 
+		
+			var latAgr = position.coords.latitude;
+			var lonAgr = position.coords.longitude;
+			carregarMapa(latAgr, lonAgr);
+			
+		});
+		
+		function carregarMapa(latAgr, lonAgr) {
+                
+			var mapOptions = {
+				
+				center: { lat: latAgr, lng: lonAgr},
+				zoom: 13
+				
+			};
+			
+            var map = new google.maps.Map(document.getElementById('mapa-google'), mapOptions);
+                
+            var marker = new google.maps.Marker({
+                    
+				position: { lat: latAgr, lng: lonAgr},
+				map: map,    
+				title: "SENAC"
+                
+			});
+			
+			var MyHouse = new google.maps.Marker({
+                    
+				position: { lat: -23.689802 , lng: -46.655021},
+				map: map,    
+				title: "Luis Casa"
+                
+			});
+			
+			var GuilhermeHouse = new google.maps.Marker({
+                    
+				position: { lat: -23.666533 , lng: -46.730391},
+				map: map,    
+				title: "Guilherme Casa"
+                
+			});
+		
+			var LuisPosition = new LatLon(-23.689802, -46.655021);
+			var GuilhermePosition = new LatLon(-23.666533, -46.730391)
+			var SenacPosition = new LatLon(latAgr, lonAgr);
+			
+			var distanciaI = SenacPosition.distanceTo(LuisPosition);
+			var distanciaHe = SenacPosition.distanceTo(GuilhermePosition);
+			
+			
+			document.getElementById('info2').innerHTML = "Senac para minha casa: " + distanciaI;
+			document.getElementById('info').innerHTML = "Senac para casa do Guilherme: " + distanciaHe;
+		
+		}
+	
+	</script>
+
+</body>
+</html>

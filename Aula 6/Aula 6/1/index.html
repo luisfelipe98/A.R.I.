@@ -1,0 +1,45 @@
+<!doctype HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Aula 6</title>
+	</head>
+<body>
+	<label>Escolha uma opção</label>
+	<br><br>
+	<select id="combobox" onclick="clique()">
+		<option value="Fitness">Fitness</option>	
+		<option value="Natação" >Natação</option>	
+		<option value="Ciclismo">Ciclismo</option>	
+	</select>	
+	
+	<div id="lista"></div>
+
+	<script>
+		function clique(){
+			var xhttp = new XMLHttpRequest();
+			
+			xhttp.onreadystatechange = function (){
+				if(xhttp.readyState == 4 && xhttp.status == 200){
+					document.getElementById("lista").innerHTML = xhttp.responseText;
+				}
+			}
+			var valor = document.getElementById("combobox").value;
+			
+			if(valor == "Fitness"){
+				xhttp.open("GET", "fitness.html", true);
+				xhttp.send();
+			}else if(valor == "Natação"){
+				xhttp.open("GET", "natacao.html", true);
+				xhttp.send();
+			}else{
+				xhttp.open("GET", "ciclismo.html", true);
+				xhttp.send();
+			}
+			
+			
+			
+		}
+	</script>	
+</body>
+</html>

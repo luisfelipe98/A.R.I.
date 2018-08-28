@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Página 2</title>	
+</head>
+<body>
+	<section>
+		<h1>Pesquisa de Serviços</h1>
+		<form action="pag3.html">
+			<label>Qual marca de carros você prefere:</label>
+			<p><input type="text" name="carro" list="carros"></p>
+				<datalist id="carros">
+					<option value="Gol"></option>
+					<option value="Ferrari"></option>
+					<option value="Palio"></option>
+					<option value="CrossFox"></option>
+					<option value="Audi"></option>
+				</datalist>
+			<label>Qual desses produtos é mais importante para você:</label>
+			<p>
+				<input type="radio" name="essencial" value="Celular">
+				<label>Celular</label>
+				<input type="radio" name="essencial" value="Dinheiro">
+				<label>Dinheiro</label>
+			</p>
+			<label>Qual é sua cor favorita:</label>
+			<p><input type="text" autocomplete="off"></p>
+			<p><label>Qual é o seu signo</label></p>
+			<p><input type="text" name="eletro" list="eletros"></p>
+				<datalist id="eletros">
+					<option value="Capricórnio"></option>
+					<option value="Aquário"></option>
+					<option value="Touro"></option>
+					<option value="Sargitário"></option>
+					<option value="Câncer"></option>
+				</datalist>
+			<p><label>Qual desses produtos é mais importante para você:</label></p>
+			<p>
+				<input type="radio" name="eletro" value="Geladeira">
+				<label>Geladeira</label>
+				<input type="radio" name="eletro" value="Fogão">
+				<label>Fogão</label>
+				<input type="radio" name="eletro" value="Microondas">
+				<label>Microondas</label>
+			</p>
+			<p><label>Você gostou dessa pesquisa</label></p>
+			<p>
+				<input type="radio" name="pesquisa" value="Não">
+				<label>Sim</label>
+				<input type="radio" name="pesquisa" value="Sim">
+				<label>Não</label>
+			</p>
+			<p><input type="submit" value="Enviar"></p>
+		</form>
+	</section>
+</body>
+</html>

@@ -1,0 +1,53 @@
+
+article:first-of-type {
+	
+	font-size: 20px;
+	
+}
+
+article:first-of-type h1 + p::first-letter {
+	
+	font-size: 50px;
+	
+}
+
+article h1 + p {
+	
+	font-weight: bold;
+	
+}
+
+header h1 + p {
+	
+	padding-bottom: 100px;
+	
+}
+
+tr:nth-child(2n) {
+	
+	background: blue;
+	
+}
+
+tr:nth-child(2n-1) {
+	
+	background: yellow;
+	
+}
+
+tr:last-child {
+	
+	color: green;
+	
+}
+
+tr:nth-child(6) {
+	
+	background: red;
+	
+}
+
+a[href="index.html"] {
+	
+	color: aqua;	
+}

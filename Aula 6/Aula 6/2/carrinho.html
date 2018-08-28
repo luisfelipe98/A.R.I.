@@ -1,0 +1,150 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hortifruti</title>
+    
+    <style>
+        * {
+            font-family: "Segoe UI", sans-serif;
+        }
+        body {
+            margin: 0px;
+            padding: 0px;
+            vertical-align: baseline;
+            border: 0px;
+            display: block;
+        }
+        header {
+            margin: 0px;
+            padding: 0px;
+            border-bottom: solid 10px #52B65E;
+        }
+        header h1 {
+            font-size: 36px;
+            font-weight: normal;
+            color: #52B65E;
+            margin-left: 20px;
+        }
+        header p {
+            float: right;
+            margin-right: 20px
+        }
+        header img {
+            float: right;
+            margin-top: 20px
+        }
+        .main {
+            margin-top: 100px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .produto {
+            border: solid 1px;
+            width: 250px;
+            height: 305px;
+            margin: 10px;
+            float: left;
+        }
+        .prodimg {
+            height: 250px;
+            padding: 0px;
+            margin: 0px;
+        }
+        .produto p {
+            font-size: 14px;
+            margin-left: 10px;
+            font-weight: bold;
+            margin-top: 0px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Hortifruti</h1>
+        <img id="carrinho" height="100px" src="carrinho.jpg" ondragover="arrastando(event)" ondrop="fim(event)" />
+        <p>Produtos no carrinho: <span id="qtd">0</span></p>
+    </header>
+    
+    <div class="main">
+        <div class="produto">
+            <div class="prodimg">
+                <img src="maca.jpg" width="250px" draggable="true" ondragstart="inicio(event)" />
+            </div>
+            <p>Maçã</p>
+            <p>R$ 1,00</p>
+        </div>
+        
+        <div class="produto">
+            <div class="prodimg">
+                <img src="pera.jpg" width="250px" draggable="true" ondragstart="inicio(event)" />
+            </div>
+            <p>Pera</p>
+            <p>R$ 2,00</p>
+        </div>
+        
+        <div class="produto">
+            <div class="prodimg">
+                <img src="banana.jpg" width="250px" draggable="true" ondragstart="inicio(event)" />
+            </div>
+            <p>Banana</p>
+            <p>R$ 3,00</p>
+        </div>
+        
+        <div class="produto">
+            <div class="prodimg">
+                <img src="morango.jpg" width="250px" draggable="true" ondragstart="inicio(event)" />
+            </div>
+            <p>Morango</p>
+            <p>R$ 10,00</p>
+        </div>
+    </div>
+</body>
+	
+	<script>
+	
+		var qtd = document.getElementById("qtd");
+		
+		function inicio(event) {
+			
+			event.dataTransfer.setData("text", event.target.id);
+			
+		}
+		
+		function arrastando(event) {
+			
+			event.preventDefault();
+			
+		}
+		
+		function fim(event) {
+			
+			event.preventDefault();
+			var data = event.dataTransfer.getData("text");
+			var node = document.getElementById(data);
+			
+			var xmlhttp = new XMLHttpRequest();
+			
+			xmlhttp.onreadystatechange = function() {
+        		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            		if(xmlhttp.responseText == "OK") {
+						
+						qtd.innerHTML = parseInt(qtd.innerHTML) + 1;
+						alert("Produto adicionado no carrinho com sucesso!!!");
+						
+					}else{
+						
+						alert("Não foi possível adicionar o produto no carrinho");
+					} 
+        		}
+    		}
+    
+			xmlhttp.open("GET", "addcarrinho.html?id=node", true);
+			xmlhttp.send();
+
+		}
+		
+	</script>
+	
+</html>

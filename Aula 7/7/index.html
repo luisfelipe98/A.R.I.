@@ -1,0 +1,111 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Lista de Tarefas</title>
+    
+    <style>
+        * {
+            font-family: sans-serif, Verdana;
+        }
+        
+        a {
+            font-family: sans-serif, Verdana;
+            color: #4682B4;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        h4 {
+            background-color: #4682B4;
+            color: #fff;
+            padding: 8px;
+            margin: 0px;
+        }
+        
+        #divTarefas {
+            width: 300px;
+            border: solid 1px #C0C0C0;
+            position: absolute;
+            bottom: 0px;
+            right: 20px;
+        }
+    </style>
+    <script>
+        
+		function carregaLista() {
+			
+			var div = document.getElementById("divTarefas");
+			var tarefas = document.getElementById("tarefas");
+			
+            div.style.display = "block";
+			
+            var xmlhttp = new XMLHttpRequest();
+			
+			xmlhttp.onreadystatechange = function() {
+        		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            		
+					tarefas.innerHTML = xmlhttp.responseText;
+					
+				}
+    		}
+    
+			xmlhttp.open("GET", "lista.html", true);
+			xmlhttp.send();
+		
+        }
+		
+    </script>
+</head>
+<body>
+    <a href="#" onclick="carregaLista()">Tarefas</a><br/><br/>
+    
+    <div id="divTarefas" style="display:none;">
+        <h4>Lista de Tarefas</h4>
+        <input type="button" value="B" onclick="execCommand('bold', 'true')">
+		<input type="button" value="I" onclick="execCommand('italic', 'true')">
+		<input type="button" value="S" onclick="execCommand('underline', 'true')">
+		<input type="color" onchange="execCommand('foreColor', 'true', this.value)" >
+        
+		<ul id="tarefas" contenteditable="true">
+            
+        </ul>
+    </div>
+	
+	<script>
+	
+		    document.getElementById("tarefas").onblur = function(){
+        var xmlhttp = new XMLHttpRequest();
+        var tarefas = document.getElementById("tarefas").innerHTML;
+
+        
+        xmlhttp.open("POST","write.php",true);
+        xmlhttp.setRequestHeader("Content-type",
+                "application/x-www-form-urlencoded");
+        xmlhttp.send("lista="+tarefas);
+
+    }
+
+			tarefas.onkeyup = function(event){
+				  
+				  var tecla = event.which;
+				  
+				  if (tecla == "13") {
+					
+					  
+					  var xmlhttp = new XMLHttpRequest();
+        var tarefas = document.getElementById("tarefas").innerHTML;
+
+        
+        xmlhttp.open("POST","write.php",true);
+        xmlhttp.setRequestHeader("Content-type",
+                "application/x-www-form-urlencoded");
+        xmlhttp.send("lista="+tarefas);
+					  
+					  
+				  }
+			}
+	
+	</script>
+</body>
+</html>

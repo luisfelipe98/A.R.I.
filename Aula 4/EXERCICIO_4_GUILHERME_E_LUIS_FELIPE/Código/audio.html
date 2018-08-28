@@ -1,0 +1,60 @@
+<html>
+<head>
+      <title>Audio</title>
+      <meta charset="utf-8">
+</head>
+<body>
+      <audio id="audio" preload="none">
+            <source src="../Audio/vincent.mp3">
+            <source src="../Audio/vincent.ogg">
+      </audio>
+      <img src="../Imagens/play.png" id="imagem">
+
+<script>
+
+  var audio = document.getElementById("audio");
+  var imagem = document.getElementById("imagem");
+  var playing;
+
+  audio.oncanplay = function () {
+
+      audio.play();
+      imagem.src="../Imagens/pause.png";
+      playing = true;
+
+  }
+
+  audio.onended = function () {
+
+      imagem.src="../Imagens/play.png";
+      playing = false;
+
+  }
+
+  imagem.onclick = function () {
+
+    if (audio.currentTime == 0) {
+
+        audio.load();
+        imagem.src="../Imagens/loading.gif";
+
+    } else if (playing) {
+
+        audio.pause();
+        imagem.src="../Imagens/play.png";
+        playing = false;
+
+    } else {
+
+      audio.play();
+      imagem.src="../Imagens/pause.png";
+      playing = true;
+
+    }
+
+  }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<html>
+<head>
+      <title>Vídeo</title>
+      <meta charset="utf-8">
+</head>
+<body>
+      <video id="video">
+            <source src="../Videos/movie.mp4">
+            <source src="../Videos/movie.ogg">
+      </video>
+      <br><br>
+      <button type="button" id="btplay">Play</button>
+      <button type="button" id="btpause">Pause</button>
+      <meter value="" min="" max="" id="meter">Tempo do vídeo</meter>
+
+      <script>
+
+        var btplay = document.getElementById("btplay");
+        var btpause = document.getElementById("btpause");
+        var video = document.getElementById("video");
+        var meter = document.getElementById("meter");
+
+        btplay.onclick = function () {
+
+            video.play();
+            meter.max = video.duration;
+
+        }
+
+        btpause.onclick = function () {
+
+            video.pause();
+
+        }
+
+        video.ontimeupdate = function () {
+
+          meter.value = video.currentTime;
+
+        }
+
+      </script>
+
+</body>
+</html>
